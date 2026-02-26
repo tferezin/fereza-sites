@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FisioVida | Clínica de Fisioterapia Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            overflow-x: hidden;
+        }
+
+        /* ========== PRELOADER ========== */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        .preloader.hidden { opacity: 0; visibility: hidden; }
+        .preloader-content { text-align: center; }
+        .preloader-logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .preloader-bar {
+            width: 180px;
+            height: 4px;
+            background: var(--gray-100);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .preloader-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            animation: loadProgress 1.2s ease forwards;
+        }
+        @keyframes loadProgress { 0% { width: 0; } 100% { width: 100%; } }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16,185,129,0.4);
+        }
+        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; color: var(--gray-700); }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 50%, rgba(16,185,129,0.03) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: shapeIn 1s ease forwards;
+        }
+        .hero-shape-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+            top: -200px; right: -200px;
+            animation-delay: 0.3s;
+        }
+        .hero-shape-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%);
+            bottom: -100px; left: -100px;
+            animation-delay: 0.5s;
+        }
+        @keyframes shapeIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding-top: 5rem;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16,185,129,0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1.3s;
+        }
+        .hero-tag-dot {
+            width: 8px; height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); opacity: 0.5; } }
+
+        .hero h1 {
+            font-size: 3.75rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gray-900);
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 .line { display: block; overflow: hidden; }
+        .hero h1 .line-inner {
+            display: block;
+            transform: translateY(100%);
+            animation: revealText 1s cubic-bezier(0.77,0,0.175,1) forwards;
+        }
+        .hero h1 .line:nth-child(1) .line-inner { animation-delay: 1.4s; }
+        .hero h1 .line:nth-child(2) .line-inner { animation-delay: 1.55s; }
+        @keyframes revealText { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px; left: 0;
+            width: 0; height: 12px;
+            background: rgba(16,185,129,0.15);
+            border-radius: 4px;
+            z-index: -1;
+            animation: highlightGrow 0.6s ease forwards 2.2s;
+        }
+        @keyframes highlightGrow { to { width: 100%; } }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            max-width: 460px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1.9s;
+        }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 2.1s;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(16,185,129,0.4);
+        }
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+        }
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 2.3s;
+        }
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .stat-label {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Hero Visual */
+        .hero-visual { position: relative; }
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--primary);
+            z-index: 2;
+            transform-origin: right;
+            animation: imgReveal 1s cubic-bezier(0.77,0,0.175,1) forwards 1.5s;
+        }
+        @keyframes imgReveal { to { transform: scaleX(0); } }
+        .hero-image {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            transform: scale(1.15);
+            animation: imgZoom 1.2s ease forwards 1.7s;
+        }
+        @keyframes imgZoom { to { transform: scale(1); } }
+
+        .float-card {
+            position: absolute;
+            background: var(--white);
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            z-index: 10;
+        }
+        .float-card.fc-1 { top: 10%; left: -8%; animation: floatIn 0.8s ease forwards 2.5s, floatMove 3s ease-in-out infinite 3.3s; }
+        .float-card.fc-2 { bottom: 15%; right: -5%; animation: floatIn 0.8s ease forwards 2.7s, floatMove 3s ease-in-out infinite 3.5s; }
+        @keyframes floatIn { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(30px); } }
+        @keyframes floatMove { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .float-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+        .float-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--gray-800); }
+        .float-text p { font-size: 0.8rem; color: var(--gray-500); }
+
+        /* ========== TRUST BAR ========== */
+        .trust-bar {
+            padding: 2rem 0;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        .trust-item i { color: var(--success); }
+
+        /* ========== SERVICES WITH IMAGES ========== */
+        .services {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16,185,129,0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .section-header p {
+            color: var(--gray-500);
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+            transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+        .service-content {
+            padding: 1.5rem;
+        }
+        .service-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+        .service-content p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: gap 0.3s;
+        }
+        .service-link:hover { gap: 0.75rem; }
+
+        /* ========== ABOUT / TEAM ========== */
+        .about {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-images {
+            position: relative;
+        }
+        .about-img-main {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .about-img-small {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 6px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .about-content > p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .feature-item i {
+            width: 24px; height: 24px;
+            background: rgba(16,185,129,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            font-size: 0.65rem;
+        }
+        .feature-item span { font-weight: 500; color: var(--gray-700); }
+
+        /* ========== TEAM ========== */
+        .team {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .team-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--gray-100);
+            transition: border-color 0.3s;
+        }
+        .team-card:hover .team-photo { border-color: var(--primary); }
+        .team-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+        .team-card .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .team-card .cro {
+            color: var(--gray-400);
+            font-size: 0.85rem;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .testimonial-avatar {
+            width: 55px; height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .testimonial-info h4 { font-weight: 700; color: var(--gray-800); }
+        .testimonial-info p { color: var(--gray-400); font-size: 0.85rem; }
+        .testimonial-stars { color: #fbbf24; margin-bottom: 1rem; }
+        .testimonial-text {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ========== CTA ========== */
+        .cta {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        .cta-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 32px;
+            padding: 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        .cta-card h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .cta-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            position: relative;
+        }
+        .btn-white { background: var(--white); color: var(--primary); }
+        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .btn-outline-white { background: transparent; border: 2px solid var(--white); color: var(--white); }
+        .btn-outline-white:hover { background: var(--white); color: var(--primary); }
+
+        /* ========== CONTACT ========== */
+        .contact {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+        .contact-info {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+        }
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        .contact-info > p {
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-text h4 { font-weight: 600; color: var(--gray-800); margin-bottom: 0.2rem; }
+        .contact-text p { color: var(--gray-500); font-size: 0.95rem; }
+
+        .contact-form-wrapper {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+        }
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.25rem;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            color: var(--gray-800);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16,185,129,0.1);
+            background: var(--white);
+        }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--gray-400); }
+
+        /* ========== MAP ========== */
+        .map-section { height: 350px; }
+        .map-section iframe { width: 100%; height: 100%; border: 0; }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .footer-brand p {
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .social-links { display: flex; gap: 0.75rem; }
+        .social-links a {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
+        .footer-links h4 { font-weight: 700; margin-bottom: 1.25rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.6rem; }
+        .footer-links a { color: var(--gray-400); text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--primary-light); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* ========== WHATSAPP ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 60px; height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.75rem;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+            z-index: 999;
+            text-decoration: none;
+            opacity: 0;
+            transform: scale(0);
+            animation: waAppear 0.5s ease forwards 3s;
+            transition: all 0.3s;
+        }
+        @keyframes waAppear { to { opacity: 1; transform: scale(1); } }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.5); }
+        .whatsapp-pulse {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #25d366;
+            animation: waPulse 2s infinite;
+        }
+        @keyframes waPulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .hero h1 { font-size: 3rem; }
+            .services-grid, .team-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .float-card { display: none; }
+            .about-img-small { right: 10px; bottom: -20px; width: 160px; height: 160px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .hero h1 { font-size: 2.25rem; }
+            .section-header h2, .about-content h2, .cta-card h2 { font-size: 2rem; }
+            .services-grid, .team-grid, .testimonials-grid, .features-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+            .hero-buttons, .cta-buttons { flex-direction: column; align-items: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .cta-card { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo"><i class="fas fa-hand-holding-medical"></i> FisioVida</div>
+            <div class="preloader-bar"><div class="preloader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-hand-holding-medical"></i> FisioVida</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Tratamentos</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="https://wa.me/5511999999999" class="nav-cta"><i class="fab fa-whatsapp"></i> Agendar</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <span class="hero-tag-dot"></span>
+                        Clínica Especializada em São Paulo
+                    </div>
+                    <h1>
+                        <span class="line"><span class="line-inner">Recupere sua</span></span>
+                        <span class="line"><span class="line-inner"><span class="highlight">qualidade de vida</span></span></span>
+                    </h1>
+                    <p class="hero-description">Tratamentos especializados com profissionais experientes. Reabilitação física, alívio de dores e prevenção de lesões com técnicas modernas.</p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/5511999999999" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Agendar Avaliação</a>
+                        <a href="#servicos" class="btn btn-secondary">Nossos Tratamentos</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Anos de Experiência</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5.000+</div>
+                            <div class="stat-label">Pacientes Recuperados</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Avaliação Google</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop" alt="Fisioterapia" class="hero-image">
+                    </div>
+                    <div class="float-card fc-1">
+                        <div class="float-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="float-text">
+                            <h4>CREFITO Ativo</h4>
+                            <p>Profissionais habilitados</p>
+                        </div>
+                    </div>
+                    <div class="float-card fc-2">
+                        <div class="float-icon"><i class="fas fa-star"></i></div>
+                        <div class="float-text">
+                            <h4>+300 Avaliações</h4>
+                            <p>5 estrelas no Google</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item"><i class="fas fa-check-circle"></i> Equipamentos Modernos</div>
+                <div class="trust-item"><i class="fas fa-check-circle"></i> Profissionais Especializados</div>
+                <div class="trust-item"><i class="fas fa-check-circle"></i> Ambiente Climatizado</div>
+                <div class="trust-item"><i class="fas fa-check-circle"></i> Estacionamento Gratuito</div>
+                <div class="trust-item"><i class="fas fa-check-circle"></i> Diversos Convênios</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services with Images -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-hand-holding-medical"></i> Tratamentos</div>
+                <h2>Cuidado especializado para você</h2>
+                <p>Técnicas modernas e tratamentos personalizados para sua recuperação completa.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop" alt="Fisioterapia Ortopédica" class="service-image">
+                    <div class="service-content">
+                        <h3>Fisioterapia Ortopédica</h3>
+                        <p>Tratamento de dores na coluna, articulações e músculos. Reabilitação pós-cirúrgica e lesões.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop" alt="Pilates Clínico" class="service-image">
+                    <div class="service-content">
+                        <h3>Pilates Clínico</h3>
+                        <p>Fortalecimento muscular, correção postural e flexibilidade com acompanhamento profissional.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop" alt="Fisioterapia Esportiva" class="service-image">
+                    <div class="service-content">
+                        <h3>Fisioterapia Esportiva</h3>
+                        <p>Prevenção e tratamento de lesões em atletas. Recuperação rápida para retorno às atividades.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop" alt="RPG" class="service-image">
+                    <div class="service-content">
+                        <h3>RPG - Reeducação Postural</h3>
+                        <p>Correção de desvios posturais e alívio de dores crônicas através de alongamentos globais.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop" alt="Acupuntura" class="service-image">
+                    <div class="service-content">
+                        <h3>Acupuntura</h3>
+                        <p>Técnica milenar para alívio de dores, redução do estresse e equilíbrio do corpo.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Fisioterapia Neurológica" class="service-image">
+                    <div class="service-content">
+                        <h3>Fisioterapia Neurológica</h3>
+                        <p>Reabilitação para AVC, Parkinson, paralisia e outras condições neurológicas.</p>
+                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop" alt="Nossa Clínica" class="about-img-main">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop" alt="Atendimento" class="about-img-small">
+                </div>
+                <div class="about-content">
+                    <div class="section-tag"><i class="fas fa-info-circle"></i> Sobre Nós</div>
+                    <h2>Por que escolher a FisioVida?</h2>
+                    <p>Somos uma clínica de fisioterapia comprometida com sua recuperação. Nossa equipe é formada por fisioterapeutas especializados e apaixonados por devolver qualidade de vida aos pacientes.</p>
+                    <div class="features-grid">
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Equipamentos de última geração</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Fisioterapeutas especializados</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Ambiente acolhedor e moderno</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Diversos convênios aceitos</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Tratamento personalizado</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Estacionamento gratuito</span></div>
+                    </div>
+                    <a href="#contato" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Agende sua Avaliação</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="equipe">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-users"></i> Nossa Equipe</div>
+                <h2>Profissionais que cuidam de você</h2>
+                <p>Conheça os especialistas que vão ajudar na sua recuperação.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop" alt="Dra. Carolina" class="team-photo">
+                    <h3>Dra. Carolina Lima</h3>
+                    <p class="role">Fisioterapeuta Ortopédica</p>
+                    <p class="cro">CREFITO-3 12345</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop" alt="Dr. Ricardo" class="team-photo">
+                    <h3>Dr. Ricardo Alves</h3>
+                    <p class="role">Fisioterapeuta Esportivo</p>
+                    <p class="cro">CREFITO-3 23456</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=300&fit=crop" alt="Dra. Fernanda" class="team-photo">
+                    <h3>Dra. Fernanda Costa</h3>
+                    <p class="role">Pilates e RPG</p>
+                    <p class="cro">CREFITO-3 34567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-quote-left"></i> Depoimentos</div>
+                <h2>O que nossos pacientes dizem</h2>
+                <p>A recuperação dos nossos pacientes é nossa maior conquista.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Carlos" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Carlos Eduardo</h4>
+                            <p>Hérnia de disco</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Sofri anos com dor na coluna. Depois do tratamento aqui, voltei a fazer exercícios. Equipe incrível!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Marina" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Marina Santos</h4>
+                            <p>Pós-operatório joelho</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Fiz cirurgia no joelho e a reabilitação aqui foi perfeita. Voltei a correr em 4 meses!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Roberto" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Roberto Mendes</h4>
+                            <p>Dor crônica</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"A acupuntura mudou minha vida. Finalmente consegui dormir sem dor. Recomendo demais!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Agende sua avaliação gratuita</h2>
+                <p>Primeira consulta sem compromisso. Venha conhecer nossa estrutura.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5511999999999" class="btn btn-white"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:+551134567890" class="btn btn-outline-white"><i class="fas fa-phone"></i> Ligar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Entre em Contato</h3>
+                    <p>Estamos prontos para atender você.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-text">
+                            <h4>Endereço</h4>
+                            <p>Av. Brasil, 1500 - Sala 42<br>Jardim América, São Paulo - SP</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-text">
+                            <h4>Telefone</h4>
+                            <p>(11) 3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-text">
+                            <h4>WhatsApp</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-text">
+                            <h4>Horário</h4>
+                            <p>Seg a Sex: 7h às 20h<br>Sáb: 8h às 14h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" action="https://formspree.io/f/SEU_FORM_ID" method="POST">
+                        <h3>Agende sua Avaliação</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" name="nome" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="tel" name="telefone" placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="email" name="email" placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Qual sua principal queixa?</label>
+                            <textarea name="mensagem" placeholder="Descreva brevemente sua dor ou problema..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Solicitar Agendamento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975654039826!2d-46.65342708502155!3d-23.563203284681764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0x63b0e04ecc76e5d9!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-hand-holding-medical"></i> FisioVida</h3>
+                    <p>Recuperando movimentos e devolvendo qualidade de vida há mais de 12 anos em São Paulo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#servicos">Tratamentos</a></li>
+                        <li><a href="#equipe">Equipe</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Tratamentos</h4>
+                    <ul>
+                        <li><a href="#">Ortopédica</a></li>
+                        <li><a href="#">Pilates</a></li>
+                        <li><a href="#">Esportiva</a></li>
+                        <li><a href="#">Acupuntura</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Convênios</h4>
+                    <ul>
+                        <li><a href="#">Bradesco Saúde</a></li>
+                        <li><a href="#">SulAmérica</a></li>
+                        <li><a href="#">Amil</a></li>
+                        <li><a href="#">Unimed</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FisioVida. Todos os direitos reservados. | CREFITO-3</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+        <div class="whatsapp-pulse"></div>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,1300 +3,778 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OdontoSorriso | Clínica Odontológica Premium</title>
+    <title>Dra. Renata Almeida | Smile Design & Estética Dental</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --primary-light: #38bdf8;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --white: #ffffff;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            --pearl: #F8F6F3;
+            --champagne: #E8DDD4;
+            --gold: #C4A77D;
+            --gold-dark: #A68B5B;
+            --charcoal: #1A1A1A;
+            --graphite: #2D2D2D;
+            --white: #FFFFFF;
+            --text-soft: #5A5A5A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--white);
-            color: var(--gray-800);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pearl);
+            color: var(--charcoal);
             overflow-x: hidden;
         }
 
-        /* ========== PRELOADER ========== */
-        .preloader {
-            position: fixed;
-            inset: 0;
-            background: var(--white);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
-        .preloader-content { text-align: center; }
-        .preloader-logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        .preloader-bar {
-            width: 180px;
-            height: 4px;
-            background: var(--gray-100);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .preloader-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            animation: loadProgress 1.2s ease forwards;
-        }
-        @keyframes loadProgress { 0% { width: 0; } 100% { width: 100%; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--pearl); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
 
-        /* ========== NAVIGATION ========== */
-        nav {
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s;
-        }
-        nav.scrolled {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
-        }
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.4s ease;
+        }
+        header.scrolled {
+            background: rgba(248, 246, 243, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
         }
         .logo {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--gray-600);
-            text-decoration: none;
             font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        nav { display: flex; gap: 3rem; align-items: center; }
+        nav a {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
             transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-cta {
-            background: var(--primary);
-            color: var(--white) !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(14,165,233,0.3);
-            transition: all 0.3s;
+        nav a:hover { color: var(--gold); }
+        .btn-header {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
         }
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(14,165,233,0.4);
-        }
-        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; color: var(--gray-700); }
+        .btn-header:hover { background: var(--gold); }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 1.5px; background: var(--charcoal); }
 
-        /* ========== HERO ========== */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 50%, rgba(14,165,233,0.03) 100%);
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
-        .hero-shape {
+        .hero-bg {
             position: absolute;
-            border-radius: 50%;
-            opacity: 0;
-            animation: shapeIn 1s ease forwards;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80') center/cover;
+            filter: brightness(0.35);
         }
-        .hero-shape-1 {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
-            top: -200px; right: -200px;
-            animation-delay: 0.3s;
-        }
-        .hero-shape-2 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%);
-            bottom: -100px; left: -100px;
-            animation-delay: 0.5s;
-        }
-        @keyframes shapeIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
-
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            padding-top: 5rem;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 5%;
         }
         .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(14,165,233,0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards 1.3s;
-        }
-        .hero-tag-dot {
-            width: 8px; height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); opacity: 0.5; } }
-
-        .hero h1 {
-            font-size: 3.75rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--gray-900);
-            letter-spacing: -1.5px;
-            margin-bottom: 1.5rem;
-        }
-        .hero h1 .line { display: block; overflow: hidden; }
-        .hero h1 .line-inner {
-            display: block;
-            transform: translateY(100%);
-            animation: revealText 1s cubic-bezier(0.77,0,0.175,1) forwards;
-        }
-        .hero h1 .line:nth-child(1) .line-inner { animation-delay: 1.4s; }
-        .hero h1 .line:nth-child(2) .line-inner { animation-delay: 1.55s; }
-        @keyframes revealText { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
-
-        .hero h1 .highlight {
-            color: var(--primary);
-            position: relative;
-        }
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 5px; left: 0;
-            width: 0; height: 12px;
-            background: rgba(14,165,233,0.15);
-            border-radius: 4px;
-            z-index: -1;
-            animation: highlightGrow 0.6s ease forwards 2.2s;
-        }
-        @keyframes highlightGrow { to { width: 100%; } }
-
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--gray-500);
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
             margin-bottom: 2rem;
-            max-width: 460px;
+            display: block;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
             line-height: 1.8;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards 1.9s;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
-        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards 2.1s;
-        }
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
+        .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            gap: 1rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1.2rem 3rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
         }
-        .btn::before {
-            content: '';
+        .hero-cta:hover { background: var(--white); transform: translateY(-3px); }
+        .scroll-indicator {
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        .btn:hover::before { left: 100%; }
-        .btn-primary {
-            background: var(--primary);
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
             color: var(--white);
-            box-shadow: 0 4px 15px rgba(14,165,233,0.3);
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(14,165,233,0.4);
-        }
-        .btn-secondary {
-            background: var(--white);
-            color: var(--gray-700);
-            border: 2px solid var(--gray-200);
-        }
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-3px);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.6;
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 2.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards 2.3s;
-        }
-        .stat-number {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
-        }
-        .stat-label {
-            color: var(--gray-500);
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Hero Visual */
-        .hero-visual { position: relative; }
-        .hero-image-wrapper {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-        }
-        .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            z-index: 2;
-            transform-origin: right;
-            animation: imgReveal 1s cubic-bezier(0.77,0,0.175,1) forwards 1.5s;
-        }
-        @keyframes imgReveal { to { transform: scaleX(0); } }
-        .hero-image {
-            width: 100%;
-            height: 520px;
-            object-fit: cover;
-            transform: scale(1.15);
-            animation: imgZoom 1.2s ease forwards 1.7s;
-        }
-        @keyframes imgZoom { to { transform: scale(1); } }
-
-        .float-card {
-            position: absolute;
-            background: var(--white);
-            padding: 1rem 1.25rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            opacity: 0;
-            z-index: 10;
-        }
-        .float-card.fc-1 { top: 10%; left: -8%; animation: floatIn 0.8s ease forwards 2.5s, floatMove 3s ease-in-out infinite 3.3s; }
-        .float-card.fc-2 { bottom: 15%; right: -5%; animation: floatIn 0.8s ease forwards 2.7s, floatMove 3s ease-in-out infinite 3.5s; }
-        @keyframes floatIn { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(30px); } }
-        @keyframes floatMove { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .float-icon {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.1rem;
-        }
-        .float-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--gray-800); }
-        .float-text p { font-size: 0.8rem; color: var(--gray-500); }
-
-        /* ========== TRUST BAR ========== */
-        .trust-bar {
-            padding: 2rem 0;
-            background: var(--gray-50);
-            border-top: 1px solid var(--gray-100);
-            border-bottom: 1px solid var(--gray-100);
-        }
-        .trust-items {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gray-600);
-            font-weight: 500;
-        }
-        .trust-item i { color: var(--success); }
-
-        /* ========== SERVICES WITH IMAGES ========== */
-        .services {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-        .section-header {
+        /* Transformation Section */
+        .transformation { padding: 8rem 5%; background: var(--white); }
+        .transformation-header {
             text-align: center;
-            margin-bottom: 4rem;
+            max-width: 700px;
+            margin: 0 auto 4rem;
         }
         .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(14,165,233,0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
         }
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
+        .transformation-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
-        .section-header p {
-            color: var(--gray-500);
-            max-width: 500px;
+        .transformation-header p {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-soft);
+        }
+        .cases-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
             margin: 0 auto;
-            font-size: 1.1rem;
+        }
+        .case-card { position: relative; overflow: hidden; cursor: pointer; }
+        .case-images { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+        .case-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .case-card:hover .case-images img { transform: scale(1.05); }
+        .case-before-after {
+            position: absolute;
+            top: 20px; left: 20px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .case-info { padding: 2rem 0; }
+        .case-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .case-info p { font-size: 0.85rem; color: var(--text-soft); font-weight: 300; }
+        .case-treatment {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
         }
 
+        /* Process */
+        .process { padding: 8rem 5%; background: var(--graphite); color: var(--white); }
+        .process-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+        .process-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .process-step { text-align: center; padding: 2rem; }
+        .step-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--gold);
+            opacity: 0.4;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .process-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        .process-step p { font-size: 0.85rem; font-weight: 300; line-height: 1.7; opacity: 0.7; }
+
+        /* Services */
+        .services { padding: 8rem 5%; background: var(--pearl); }
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        .services-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            max-width: 500px;
+        }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .service-card {
             background: var(--white);
-            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid var(--gray-100);
-            transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+            transition: all 0.5s ease;
         }
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: transparent;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
         }
-        .service-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .service-card:hover .service-image {
-            transform: scale(1.05);
-        }
-        .service-content {
-            padding: 1.5rem;
-        }
+        .service-card img { width: 100%; height: 250px; object-fit: cover; }
+        .service-content { padding: 2rem; }
         .service-content h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
         }
         .service-content p {
-            color: var(--gray-500);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-        .service-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: gap 0.3s;
-        }
-        .service-link:hover { gap: 0.75rem; }
-
-        /* ========== ABOUT / TEAM ========== */
-        .about {
-            padding: 6rem 0;
-            background: var(--gray-50);
-        }
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-        .about-images {
-            position: relative;
-        }
-        .about-img-main {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .about-img-small {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 6px solid var(--white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .about-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        .about-content > p {
-            color: var(--gray-500);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .feature-item i {
-            width: 24px; height: 24px;
-            background: rgba(16,185,129,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--success);
-            font-size: 0.65rem;
-        }
-        .feature-item span { font-weight: 500; color: var(--gray-700); }
-
-        /* ========== TEAM ========== */
-        .team {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .team-card {
-            text-align: center;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 20px;
-            border: 1px solid var(--gray-100);
-            transition: all 0.3s;
-        }
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        }
-        .team-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1.5rem;
-            border: 4px solid var(--gray-100);
-            transition: border-color 0.3s;
-        }
-        .team-card:hover .team-photo { border-color: var(--primary); }
-        .team-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 0.25rem;
-        }
-        .team-card .role {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        .team-card .cro {
-            color: var(--gray-400);
             font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--text-soft);
         }
 
-        /* ========== TESTIMONIALS ========== */
-        .testimonials {
-            padding: 6rem 0;
-            background: var(--gray-50);
-        }
-        .testimonials-grid {
+        /* Doctor */
+        .doctor {
+            padding: 8rem 5%;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .testimonial-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid var(--gray-100);
-            transition: all 0.3s;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        }
-        .testimonial-header {
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .testimonial-avatar {
-            width: 55px; height: 55px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .testimonial-info h4 { font-weight: 700; color: var(--gray-800); }
-        .testimonial-info p { color: var(--gray-400); font-size: 0.85rem; }
-        .testimonial-stars { color: #fbbf24; margin-bottom: 1rem; }
-        .testimonial-text {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-style: italic;
-        }
-
-        /* ========== CTA ========== */
-        .cta {
-            padding: 6rem 0;
             background: var(--white);
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .cta-card {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 32px;
-            padding: 5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-card::before {
+        .doctor-image { position: relative; }
+        .doctor-image img { width: 100%; height: 600px; object-fit: cover; }
+        .doctor-image::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            top: -20px; left: -20px; right: 20px; bottom: 20px;
+            border: 1px solid var(--gold);
+            z-index: -1;
         }
-        .cta-card h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .credentials {
+            position: absolute;
+            bottom: -30px; right: -30px;
+            background: var(--charcoal);
             color: var(--white);
-            margin-bottom: 1rem;
-            position: relative;
+            padding: 2rem;
+            max-width: 280px;
         }
-        .cta-card p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.15rem;
-            margin-bottom: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            position: relative;
-        }
-        .btn-white { background: var(--white); color: var(--primary); }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .btn-outline-white { background: transparent; border: 2px solid var(--white); color: var(--white); }
-        .btn-outline-white:hover { background: var(--white); color: var(--primary); }
-
-        /* ========== CONTACT ========== */
-        .contact {
-            padding: 6rem 0;
-            background: var(--gray-50);
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-        }
-        .contact-info {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid var(--gray-100);
-        }
-        .contact-info h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-        .contact-info > p {
-            color: var(--gray-500);
-            margin-bottom: 2rem;
-        }
-        .contact-item {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .contact-icon {
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        .contact-text h4 { font-weight: 600; color: var(--gray-800); margin-bottom: 0.2rem; }
-        .contact-text p { color: var(--gray-500); font-size: 0.95rem; }
-
-        .contact-form-wrapper {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid var(--gray-100);
-        }
-        .contact-form h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
+        .credentials h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
             font-weight: 500;
-            color: var(--gray-700);
-            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
         }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.9rem 1.25rem;
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            color: var(--gray-800);
-            font-family: inherit;
+        .credentials ul {
+            list-style: none;
+            font-size: 0.8rem;
+            font-weight: 300;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        .doctor-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .doctor-content h2 span { color: var(--gold); font-style: italic; }
+        .doctor-content p {
             font-size: 1rem;
-            transition: all 0.3s;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--text-soft);
+            margin-bottom: 1.5rem;
         }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(14,165,233,0.1);
-            background: var(--white);
+        .doctor-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 2rem;
         }
-        .form-group textarea { height: 100px; resize: vertical; }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: var(--gray-400); }
 
-        /* ========== MAP ========== */
-        .map-section { height: 350px; }
-        .map-section iframe { width: 100%; height: 100%; border: 0; }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: var(--gray-900);
-            color: var(--white);
-            padding: 4rem 0 2rem;
+        /* Testimonial */
+        .testimonial {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--champagne) 0%, var(--pearl) 100%);
+            text-align: center;
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
+        .testimonial-content { max-width: 800px; margin: 0 auto; }
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--charcoal);
             margin-bottom: 3rem;
         }
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            display: block;
+            line-height: 0.5;
             margin-bottom: 1rem;
         }
-        .footer-brand p {
-            color: var(--gray-400);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-        .social-links { display: flex; gap: 0.75rem; }
-        .social-links a {
-            width: 40px; height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
+        .testimonial-author {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            transition: all 0.3s;
+            gap: 1.5rem;
         }
-        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
-        .footer-links h4 { font-weight: 700; margin-bottom: 1.25rem; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 0.6rem; }
-        .footer-links a { color: var(--gray-400); text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
-        .footer-links a:hover { color: var(--primary-light); }
+        .testimonial-author img {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info { text-align: left; }
+        .author-name { font-weight: 500; font-size: 1rem; color: var(--charcoal); }
+        .author-case { font-size: 0.8rem; color: var(--gold); margin-top: 0.3rem; }
+
+        /* CTA */
+        .cta { padding: 6rem 5%; background: var(--charcoal); text-align: center; }
+        .cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        .cta h2 em { color: var(--gold); font-style: italic; }
+        .cta p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1.2rem 3rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .btn-gold:hover { background: var(--white); transform: translateY(-3px); }
+        .btn-outline-light {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+        .btn-outline-light:hover { background: var(--white); color: var(--charcoal); }
+
+        /* Footer */
+        footer { background: var(--graphite); color: var(--white); padding: 4rem 5% 2rem; }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        .footer-brand .logo { color: var(--white); display: block; margin-bottom: 1.5rem; }
+        .footer-brand p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.6);
+            max-width: 280px;
+        }
+        .footer-column h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.8rem; }
+        .footer-column a {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-column a:hover { color: var(--gold); }
         .footer-bottom {
-            text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--gray-500);
-            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* ========== WHATSAPP ========== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            width: 60px; height: 60px;
-            background: #25d366;
-            border-radius: 50%;
+        .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 1.75rem;
-            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
-            z-index: 999;
             text-decoration: none;
-            opacity: 0;
-            transform: scale(0);
-            animation: waAppear 0.5s ease forwards 3s;
+            font-size: 0.8rem;
             transition: all 0.3s;
         }
-        @keyframes waAppear { to { opacity: 1; transform: scale(1); } }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.5); }
-        .whatsapp-pulse {
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 2px solid #25d366;
-            animation: waPulse 2s infinite;
-        }
-        @keyframes waPulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+        .social-links a:hover { background: var(--gold); border-color: var(--gold); color: var(--charcoal); }
 
-        /* ========== RESPONSIVE ========== */
+        /* Responsive */
         @media (max-width: 1024px) {
-            .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .hero h1 { font-size: 3rem; }
-            .services-grid, .team-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            .float-card { display: none; }
-            .about-img-small { right: 10px; bottom: -20px; width: 160px; height: 160px; }
+            .cases-showcase { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .doctor { grid-template-columns: 1fr; gap: 4rem; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu { display: block; }
-            .hero h1 { font-size: 2.25rem; }
-            .section-header h2, .about-content h2, .cta-card h2 { font-size: 2rem; }
-            .services-grid, .team-grid, .testimonials-grid, .features-grid { grid-template-columns: 1fr; }
-            .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
-            .hero-buttons, .cta-buttons { flex-direction: column; align-items: center; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .cta-card { padding: 3rem 1.5rem; }
+            nav { display: none; }
+            .menu-toggle { display: flex; }
+            .process-steps, .services-grid { grid-template-columns: 1fr; }
+            .services-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 1.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .credentials { position: relative; bottom: 0; right: 0; max-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-content">
-            <div class="preloader-logo"><i class="fas fa-tooth"></i> OdontoSorriso</div>
-            <div class="preloader-bar"><div class="preloader-progress"></div></div>
-        </div>
-    </div>
+    <header>
+        <a href="#" class="logo">Dra. Renata Almeida</a>
+        <nav>
+            <a href="#cases">Transformações</a>
+            <a href="#services">Tratamentos</a>
+            <a href="#doctor">Sobre</a>
+            <a href="#contact">Contato</a>
+        </nav>
+        <button class="btn-header">Agendar Visita</button>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+    </header>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo"><i class="fas fa-tooth"></i> OdontoSorriso</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#equipe">Equipe</a></li>
-                <li><a href="#depoimentos">Depoimentos</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="https://wa.me/5511999999999" class="nav-cta"><i class="fab fa-whatsapp"></i> Agendar</a></li>
-            </ul>
-            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Smile Design & Estética Dental</span>
+            <h1>O sorriso que você sempre <em>sonhou</em></h1>
+            <p>Transformações personalizadas com técnicas de Smile Design e materiais premium. Cada detalhe pensado para criar o sorriso perfeito para você.</p>
+            <a href="#contact" class="hero-cta">Inicie sua Transformação</a>
         </div>
-    </nav>
+        <div class="scroll-indicator">Scroll</div>
+    </section>
 
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <div class="hero-tag">
-                        <span class="hero-tag-dot"></span>
-                        Clínica Premium em São Paulo
-                    </div>
-                    <h1>
-                        <span class="line"><span class="line-inner">Seu sorriso merece</span></span>
-                        <span class="line"><span class="line-inner">o <span class="highlight">melhor cuidado</span></span></span>
-                    </h1>
-                    <p class="hero-description">Há mais de 15 anos transformando sorrisos com tecnologia de ponta, profissionais especializados e atendimento humanizado.</p>
-                    <div class="hero-buttons">
-                        <a href="https://wa.me/5511999999999" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Agendar Avaliação</a>
-                        <a href="#servicos" class="btn btn-secondary">Nossos Tratamentos</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Anos de Experiência</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">8.000+</div>
-                            <div class="stat-label">Pacientes Atendidos</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4.9</div>
-                            <div class="stat-label">Avaliação Google</div>
-                        </div>
-                    </div>
+    <section class="transformation" id="cases">
+        <div class="transformation-header animate-on-scroll">
+            <span class="section-tag">Transformações Reais</span>
+            <h2>Cada sorriso conta uma história de renovação</h2>
+            <p>Mais do que procedimentos estéticos, criamos transformações que impactam a autoestima e a vida dos nossos pacientes.</p>
+        </div>
+        <div class="cases-showcase">
+            <div class="case-card animate-on-scroll">
+                <div class="case-images">
+                    <img src="https://www.implart.com.br/wp-content/uploads/2009/12/Lente_contato_dental_antes_e_depois_47.jpg" alt="Caso Marina - Tratamento Dental">
+                    <span class="case-before-after">Resultado Final</span>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-image-wrapper">
-                        <!-- Pessoa feliz sorrindo - imagem clean -->
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&h=600&fit=crop" alt="Paciente Feliz" class="hero-image">
-                    </div>
-                    <div class="float-card fc-1">
-                        <div class="float-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="float-text">
-                            <h4>100% Seguro</h4>
-                            <p>Protocolos rigorosos</p>
-                        </div>
-                    </div>
-                    <div class="float-card fc-2">
-                        <div class="float-icon"><i class="fas fa-star"></i></div>
-                        <div class="float-text">
-                            <h4>+500 Avaliações</h4>
-                            <p>5 estrelas no Google</p>
-                        </div>
-                    </div>
+                <div class="case-info">
+                    <h3>Marina, 34 anos</h3>
+                    <p>"Eu evitava sorrir em fotos. Hoje, não consigo parar de mostrar meu sorriso novo."</p>
+                    <span class="case-treatment">20 Lentes de Contato + Clareamento</span>
+                </div>
+            </div>
+            <div class="case-card animate-on-scroll">
+                <div class="case-images">
+                    <img src="https://www.implart.com.br/wp-content/uploads/2016/04/lente_contato_dental_e_gengivectomia_50kb.jpg" alt="Caso Roberto - Reabilitação">
+                    <span class="case-before-after">Resultado Final</span>
+                </div>
+                <div class="case-info">
+                    <h3>Roberto, 48 anos</h3>
+                    <p>"Recuperei não só meu sorriso, mas minha confiança nas reuniões de trabalho."</p>
+                    <span class="case-treatment">Reabilitação Oral Completa</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Bar -->
-    <section class="trust-bar">
-        <div class="container">
-            <div class="trust-items">
-                <div class="trust-item"><i class="fas fa-check-circle"></i> Tecnologia de Ponta</div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i> Profissionais Especializados</div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i> Ambiente Climatizado</div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i> Estacionamento Gratuito</div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i> Diversos Convênios</div>
+    <section class="process">
+        <div class="process-header animate-on-scroll">
+            <span class="section-tag">Sua Jornada</span>
+            <h2>Do sonho à realidade em 4 etapas</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">01</div>
+                <h3>Análise Facial</h3>
+                <p>Estudo completo do seu rosto, lábios e dentes para entender o sorriso ideal para você.</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">02</div>
+                <h3>Design Digital</h3>
+                <p>Criamos uma simulação 3D do resultado final. Você aprova antes de começarmos.</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">03</div>
+                <h3>Mock-up</h3>
+                <p>Teste provisório na sua boca para você experimentar o novo sorriso por alguns dias.</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">04</div>
+                <h3>Transformação</h3>
+                <p>Execução final com materiais premium e técnicas minimamente invasivas.</p>
             </div>
         </div>
     </section>
 
-    <!-- Services with Images -->
-    <section class="services" id="servicos">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag"><i class="fas fa-tooth"></i> Tratamentos</div>
-                <h2>Cuidado completo para seu sorriso</h2>
-                <p>Tecnologia avançada e profissionais especializados para transformar sua saúde bucal.</p>
+    <section class="services" id="services">
+        <div class="services-header animate-on-scroll">
+            <div>
+                <span class="section-tag">Especialidades</span>
+                <h2>Tratamentos de alta performance estética</h2>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <!-- Ortodontia: alinhador transparente invisalign -->
-                    <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&h=400&fit=crop" alt="Ortodontia Invisível" class="service-image">
-                    <div class="service-content">
-                        <h3>Ortodontia Invisível</h3>
-                        <p>Alinhadores transparentes personalizados. Corrija seu sorriso com conforto e discrição total.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <img src="https://www.implart.com.br/wp-content/uploads/2021/06/lentes_de_contato_dentais_50kb.jpg" alt="Lentes de Contato Dental">
+                <div class="service-content">
+                    <h3>Lentes de Contato</h3>
+                    <p>Lâminas ultrafinas de porcelana que transformam cor, forma e alinhamento com preparos mínimos.</p>
                 </div>
-                <div class="service-card">
-                    <!-- Implante: procedimento de implante dentário -->
-                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&fit=crop" alt="Implante Dentário" class="service-image">
-                    <div class="service-content">
-                        <h3>Implantes Dentários</h3>
-                        <p>Implantes de titânio com tecnologia guiada. Recupere seu sorriso de forma segura e natural.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <img src="https://www.implart.com.br/wp-content/uploads/2009/12/coroa_zirconia_estetica_cerec_50kb.jpg" alt="Facetas de Porcelana">
+                <div class="service-content">
+                    <h3>Facetas de Porcelana</h3>
+                    <p>Para casos que exigem maior cobertura, com estética natural e durabilidade excepcional.</p>
                 </div>
-                <div class="service-card">
-                    <!-- Clareamento: antes e depois -->
-                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4RExgUERIXEg4PFRwVFxkZGxsbEBQdHx0aHxgaGxr/2wBDAQQFBQYFBgwHBwwaEQ8RGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhr/wAARCAC+AQoDASIAAhEBAxEB/8QAHAAAAgMBAQEBAAAAAAAAAAAAAwQCBQYHAAEI/8QATRAAAQMCAwQDCgoGCQQDAAAAAwABAgQFERITBiEjMSIzQQcUMkJDUVJTYWIVY3FygYKRobHwJIOSorLBJjQ2k8LR0uHiFnPx8ggXo//EABsBAAIDAQEBAAAAAAAAAAAAAAIDAAQFAQYH/8QANBEAAgIBAgMFBQcFAQAAAAAAAAIDEgQBIgUTMhEUQlLBISNBcfAGMTNRYnKhFSRDscLh/9oADAMBAAIRAxEAPwDuZJJORUW4dir4yXz8+jDGdeUI8l8UCGBpsSSHJMhkoCOjTYksOSZEiBCxXorylFcqQkoyXsy9KS6Q8oyUJL6iIfIo+VRjFSREL61/2dvvyj/F1nZLRWv+zt9+Uf4us/lVyboX5eupRh6pPn6aAJKMhIuRSyqmXhbSUoiR8qJGKhAAxI8YosRImkmCrA8qJFFyqOREAEipKMV6SIhFQkpoUpqBqQUV6UlHMhGklFRzKOZBYhn7h2LPVVTorRXCKxt+L3mHVVdRkajY7mrAdYJcljtwPW0ijVtQ7a0RjaXfIxfPUZS6sasdG76GiDuAgrJxq9bqiqMqlDYb3M3Q79TJ4d6GbqlzYZSo4z1KLeTuanRvhUSOO403rVzbvn4zi+OmO+SJlidzU38a8b+P6P3uvnwgL1qwMasqNGsL+fnf7qWJ3M3samnxw149v3JqkC1V4D845vk3rnEjl/1+6iU1XUibvgZCD0/HgiVl8SgPg7NrHTCUJBJfTIsXDairoy59fUaUsXaXatFQbcU+lp3IHjO+aP3Mm+4YqyYuSi9NjX2v+z18/U/iqDMtPZS01fZryO3lYnVtk9He6opURBdb5RW543qv18THgfTmyW/P00Fcy9FE71RY0ypVYvbBaMkSMUzGjUZCU5ep3tUjHki50GQtJeRAVGIqSDnRMygokory8oQil5SRZJYigakZSQ5TXpTS8pJI0PIqHnQsy9mXLBAyCWW2mtmsFbSUFW3Kj1goCRtVjitRYRa3VLO3zZARuqXVrpblmaqXkip8beY344VZbKcQBtPddmLt3o1RqDlLDLPf/uy6tb9ptYwh1Y9JYnaTZXWv1JXeSHPOtj3nraXC6zoI5ltUxVymxZGVuk08atSHV8bresVFcqGus/EpP0oXoT8L6slUU+2NMbhl4RRoOk14ZFnW0ZvdfjcIn8OZN65OL1ekRZClvlMY3WKyDcPjVKhF9k4OoiR/qf1/TVaGuGYOkn6eQjeVS6jrDXD4v7nQ/PiqQRE1hfn/AMqWrweNxfB/miU4haP+OfpNvyxw+qunLEaqnJq6hR6v8Pg+ZuX/ACSJoj9aQQujDp9LpdqbJFu9cXZmcU5P4O/fgz/hFLTPuIOt1MZZc8sWk/PHHpfV5PHHKu9QaavobjZNj0mxO1VQ9VpYzBBpwaWYeWWEsW59qfL37b7fr186itlALScsDRJCMZPufxX7OWHYqHZzg7C7Y7yNvpt3o9L5VRU98O0Bic5qinbwRSI+Tk/i+zFaVkRFVvy9dTDXEkyciVk+Df8AKmrJd6yqkM5IDFTdKPvR5c/o8FJ1N3I5caYwyDJmyc4+Zu1tyRmKuuIIwpAlmKG/HK8nd25vi/bz+XHt5qZB9/8ADDSVAxg5SEKMm55crxfDteTeL9ySyFlUijPodqbjSHyDLgPfzgz/AMvkT9JtpU4dN4keD44+zDkqOFBVFNKlYJXJnwkKDOSTYc3ytydt+5n7OzcrIux9wqN1LR1RYZM+Zqdw9JuTO08vP2PJJVJ/CNm7guvY3YXdNti52y1wIEG+6WXzfInx3i1VnlCC8Hpz8Hfz+xc+qrVV0TNA4SQI8XnlyyzNHHDF925vb7WUQQOVys8JYj3zbL4O/kg5kvSyidcPFk3I9Tpk4xCQji06jJ6E83R/OCFCoH2LAQr6ijM7dMbth24P2P8AyZ1ZDvs2xaobUYmDbpYduKnNURrhP+42qkqilu9HotqF0ieJzyxk/wDJk/Eou0nC/PSTDO10ZSZUsRHJySheaUwSi8pIcpL0pIMppQRLMvZkCU1HVQkLuUUKSZklpJgJRX6h1qPVEuaVwOMVdhiLW1RFWCvFv0TFXW8xu8Pm8JzysjwVGx1wzVlIL31d1lvF6tZfvP4NvAq7yXgJ9thOJYfN94pvLxH9DU7LsVQ1lt0qumGXx+mNAIfW0l0Wwg4KtRqrHhJGaLpMHPuWWqU8G1qWHpimz/c7LEXuyVlkEzUrzqNSTRhBvS7PxX6IqAcFZkdqFcrkLVHqiH01GhXwj4eKZK9THNAWC8iEMrQ1PuXoVNaEz99U5BN70HZl+haexj0eqXy7bHC+DRVKjY4+PjMniU4hb7v61Xo64WiISxvdHsF1t12HOxEnpHw6GO7NyVuHZraCjtoqn+tl6OeEB/w+dUa7qnpFyo2VWt1F+aYjB+N/aSgxaxv8apAXnDAZOXjedWEbuNdqacbMp0PZkztsdtfOlJjkIDJ7OkscbjG4v7/grU7Mn/oHtd8W9N/EsWOpGYyfN0x/Xx1KWC3vp2/V6aBAl/Shznz+XB38+9XYqtu+yd79HDi5IzeMZYZXZnw82HR9slU08+MmBy4yro7IaEtJTUWfaSooK+B2MNiZMkpSw6TZnfng+D4u7rWz27uQsGEOnHTDw3gyl3O3mzRfLm7WbsXLzSRg3DRD6oX+XR7PlV2PLlXaYuRw+Cd7V0OhBvVvqrk9RWDNU1DQ8Nx45Yu+DaeDY4bpdm/NzTF/2rtjxgT4HNk8aM6SMNST7o73i/vLmcqkuiIotPVH04eLJfDXGsYjGIcxZt5Sc3k/3pvfdpT14RGzq3wC1dSMrEYQ9MRM05whD29HL72XL4KrM+sbg+70PFhH6UxKrEHhC9753u5l9kf1WmIvudBZ7bjbXYC1Oq4njy/9k2G5VNH+sSEik1v8aWkf1qVU6242lDtKPR/S/wBtOxuY6wOouckP8ajxqakKm8oSY6+E3edCKstb79xuKruNwGZSpSZWUOSSBqr6Tmgrgs2CHJRzr0pqEEzS0VlrsLvzirWVEFmKovG0lC5jtVrGZqgaPDWZvgtbhLW1nXMq2VuH5ZM/SeojY5hc9vi7JXGihcwTYTzjHPGO5m7cd/NfpuwnGajEUXoLhW1myNNfraWmKNafubbSPs1s4K3bUnhTzt7aIzzfCJBs3RZnx5s2DfRj2qzCyqeP41w1rcyNdp1euPwVKw0flVzPaXup2i30rEpnncibskKaO52x55n3fi/sW47lm3VBtvstSXW3yjE+Dwq6bM7ypixd2lF93sxZ92MZRfBscGunlWhZV3G/CXRVzTl1qPTL6az4zq3GfRRLcQxm71Y6asuWrp9XOWRW1vswtFSp46xlfUvBQ7bBW2mXu/c2tV26dTCOpy8Hfh8qzFd3GLdSD1KaU/marrrkpL24odNA0asFHmTxdLanIR7PfAXc/wBsh8Qufvf526a5pbbZcLgHUphyfJ8n+a/UFdbYVdkuVHHlNm/Fn/kg2bZujt1Iw3hvhDCPt9q0Fxeaql+Hi8mOreZtfTQ/MNVT1NuLxhkFj4OeDt/JSDXECv09U7NUR+GenGUT+k2KTj3Odn/K20aBuGl1ftCtfeKfnaVYVLmutNR/1sgxfPmv0kbYW0Uf9UoqcXzILk/dD2BncbtQwph4ag5b/mv/AMlXk4fVbD8fjUU8tW2qYmNzKbquKL3OmhSriB+KXY9mO5xT2gL48Sod8ZTl5m5My0FRsrTGDxRo14azKIk48qttXafn8dZ5UumvkrjreV0vqLYd0LY1ggpp2cMBEczQ6EWbHdu7PMyBbu5tOrpB98znqzbDGO5sX9iV3NrVLq8Wg5fMYyxKnRQ9XWN+f5c1r7l3I6umIUdLV5SQ5NPf97MslV7PXGjuA7eWECEm2fGOPg44Y8vYgbFZepR8fEsaXpYHKX91+fsUSVmitGTuYXAfW3TvZvNoZvvzJKj2CnokJUnmXJLDzbk7ucnlFNxTE8xU/C9NrKwp7uNZ/abZX9MpKa38Lwpz6a5vdD1NHwxVJEqTDZdwpeJQS+HU7vG763lEX4RX56odqrlR+U1fnq5/+xC+rWbqvtLemqtp2n6kjNTzpeMl6UlXK59JyWVuEeMtPJUlwEoMhbcZ2o4Olw0tKKPVR61DhDRFqVPoYw95Eemx22idQqm5WAV4Dpl4Sthy1jJ3S1uqTVL7dJyqos1TbazvarFqi9Na/ZHZsdjqx1lhphUNaSOEzCj0pNjyeXN2x34PyVvdLf35R8X6k1PZ84wCKCv4RB+DPs+RMaRjzmdw/wB3aM2e1W1G0mxIRFq7JTXqlzx/SgHkDNHt8WTNPL4vRis9Xf8AyNtIrYUtBZbmW4b2gA+mMbyw3O82lJ2b6Hf8V663GtalJSNUE73n4UM27sWGnsRT1jEIOqcRp/Es8cf2lZjmU8tHjx/5D9Bdy69n2j2ZtlxucYQqKsTknGDOzRd3fBm344M2HPF/at7mX597nu1Vy2DtorRtBbSXCkp5y73q7dllKI3k75Zinll0cZeBm+ausbP90TZvakrist2p6qrH4dLLEVQP54Zs04/WZk2ysUJoWVm8ps9VfQl4yRifWTI46KniKlS4B/VCfVRxxSduJrUtQ/zU5Fehg/CM5+olGKnkXs6nnVgWCMqslIMxtVWhpqrDVi1iqEHwiEo1EVCJVEhVCFLdKEdZpavk5506MEBOIYurH0/rJaoPxkcM1AiNYLW1SrEVVCL4S1fKrc1Eliq6p/TFGDjD1U+tKXrVktfg/FKxv110aNc9u20o6OjLpIGYasbsY/a3bIlovhHoSQcg4Zft3rnA6ElxNqF8onaHZY5bhW3CunIhDzeTQ9Fsd2H0LU0tu0Vh5WQrbT3HDeFsq8yQzZNlxaKT/wClS+rXVrfs4Ws4hVc/AKzGZe0ty6KrdhuF5RUlRKgOSUqIJknNLE5IQlMtXC0Taqqq6pIU3FfU/wAlp64SzRgf4oKGxiyCY/JEF7ytqUow9aqaUtH9X0P+SZCfWRqxvdRbkjrcUqqqyhGrCJ+CmZA1vjU/qIu0xNRKuo+Hpaov4fmrV7PyFWB4S+1NAw97OqiNJUhNq28mkVCq1M7MwIshbRbWNtGhEsbt7spT3ulhKdOH4QBJu9qh49Ib4t2+bdy/yZWlBtLU0bMOvH3yL04YRdvowwf7lOV4prxWCEIul4XTmPL0vRVmx5VsPJga1RCgs+2NiDqbKbbVv/YupJHj9WU4zwj7uCere6d3WrbystmrxesGCc8/7Bo/gtpR0etRoFVahJ3MYz+1H6l0Adz3utXstg20v+2Ft0h2vvSA7cCEhNGLu7TfGe95Sx+b0W9sltbH3ftir08NauLbDSw4daBx4fLNsYN+0kdkbXSVGym0wqwUDDKwoTjOOMZRi7u25/lx3rKV3c22dOZifB+jgzM7Bm8Yy+jHBvowWzC0nKWpn6xYryvddV+XyO723aC2XkWrablR3AXp0tTEsfti+Csombzr8r3PuQWYzMQMqimL5mkzx+9sVUWzYEoq0rgq+9xDnw55ek+HJ8GfcrHOk8pz+n47bll/g/Sm3G11FstaKmtrSbxwd4CZ2xJLB8Is3t8/Z9q4LsH3d2oKcdFtuEr9OWFwDHNgzu7s04M2LM29sY49nR5uhn7nlvZmaB3kRp4tNo4SdsG3Puwwx8yzV67ndTR6velTT1XvwSXaa1lL+Ni4XKqzW/g/T9m2qtN8Hms9xp66DO7OwStKUfnR5x+R8PkVgapX5j2a7nFNTlgQjd8VE/BlPlF8Oz8/Qtltpavg2jFQlraj9IB0+PKOWXoxwkrCyNWzGXJhx8ysbGxtW3tmvd+rbbbLgMlVSTeMoZm6eHN4+kzO+GLYtux7Wd9cGsX4iPYC267iqLIUrFBLPCYXdpM/nZ2f8F3zZvui1rW/C/UZB1A4YtJ8GzKrHmLarF/I4NLW0O46nd7zCmGSc5xgOMcZSlyizLj9u7pNmvc6mppz4DHPL7XbsfDmsRtXc73tnWVAKqs72tk26FNBsOi2/pP272x83s3JSgsVNbhMOmHpk+371XmzvKaOH9npeqbaabaO8zu2I6XMwm+2SzsqYvJW9CLg8X8yRZR1lnSZDMephwYMXpUrKUHkldWWw63FL6aNQ27WW2oaMYQ6apdQjKzK7VB0tDop3vJM0tMm8qFvvMOxT5l6MkDOpRmkhnipaSPLkliIQhSoVDXAWgKkqgSEtQtVjKVQODpiEkxl0Vd1AkhUA/8A0RHo8eawSgqlpLNTyrytMbZ5QaTzzQxizYO+L/ZgsgBaSzXZ7e2kMzjgScYvKPhRbHe7e3BOhbfuHZKtyvdFlV0uL8PqoSyPPFsHl/L/AM+Z1CFuxE0/WSyR7d/t8yvbWSkcMNRxF08NacJtly4vg/7WO51cUdFA2FY4+E2aFKLI0suO+UsX3c+jH3Y+1aSwWMSTPeHac/qbbpFKPh/UVKS3cbVENdHuNkYLEIw/HyznnzdLtn/NIRsjO2THxc8J+JKPnZ0DQMW4MuKntMtTXust+GkTh+h2K5JtpTFC2qObl8bJ/wCUGutU2FkeGGecYQx8Z38yqz2dhNpkH89AzN4juuFhT7jo+xe0NPHY7aWpxk8AzFi3b0n7FTE29tHxn92vmzlBGGwW18Rc597YT9LpLDjswv1vzFoa5LRItTEx+E4s2RPbt2t6aGurNtbaYP6Jqf3aqA7VUwQ9UQqQHaOE/J+ztRB2r4tB36U0F4LiKFJtaXyVD+2RVxrrcqzqtMXjq0pLePVG5dPS9+eVFJbha3C+olNlSN4h8eFiRP0lOGsuzBanasYYs+aGWLN7MMcMcFGVI5uJVEnUl8855vvxVwOh8miHgL/tfM/Deq7SM3UxcWOKL8NSsGIQeqEvkopySZCL1yCx1mM/l0Tavq0eQtbS9UmTA1v/AERAi4Okl2ONILd7eq+un6em43B/bUA6msrSlAl2M7IkLK3i43k/qK3DBKUoFZjEhtYwmCxRF6MV5dEmZXorykljj0kGSMhyQhCxUtJOSggEghCKuqEqwkVfSiqyqAiL+PNUo6gWiFSH1CbyoGh6pQ9HDNYahXzd6jpyd5xylxbHFvy6vAXqpLp5i6ZBik0cmLNizM2XnuxZsOeHs3vjnBg/P2I0i6Pq/wA+MrCSuhJYYZjoNt2hgGgJT1pP0gjRFpz8GMcXji+7Hs6WH7qeaRK0tPmBpDz+BCebNGWLy+nM3n5Ye6ucd/SNVahJ9PNF4y9rYf5K4oLmSm73OR88gOzwfc2Ed+ZsfazYK8uXbaxjTcL1TevUbkIKequtcaoIZqWiBEYpZOjnk2MnwdsMPB5+Z0rW0tBKmfEBYVrw4zQ5NGTYxhPzYt0f5LMNV6sRhk7YTd3JGZMkZO8nk+Lvy3vzUY3EhnqC6IqgVRmlPCbx0+TSwZnbD8efYrOmQrlDXClRtN31/wC+3U6ds/Z7dcLNe6SmJiIwwxnODt2Y4P7H3LC1FuGYJSD4gxzlDdj2SeMW3P7MVptgh1A7JfWxn0HFGOWTbsJSfDH6fvWRFcqGjpCDBATEPDiTmboxww3wZt79uWOMWTmZHiUpY6yx5Myq1vbp/rQAO0VAhZRafvw3SlHdzwf2PFEah83V+P7vtw7UF72Niag9TiTh12HhYM3Zuw3eDgtNabxSxu5GccdSJehCEN27DpfxKkqxMa00uREtqlC9pqXfpCLhhvnAMps3s3NzRC2irpMrkh0JZcubHe0sd/0YfeuqVG1dJb2qmcDTnB30oxdsHZmZ3xfs5v8AY65tdNrT12JaaekPJLoThHLHHnh0pY7k+aGKL72KGLm5mVr2aR1UrZAbWyafge54vb7V680AxOOdLjPPF5b92DNvxd35drqtJUEMIZSc2nJnl58cHXyoOP8ASvn9DxvYqXMWpt6I9l1sLZxdYJOhP630PTSFPEWt1Xv9DwvdyxRsheKPU4WeMOh43NIsMkYGGGibSL8zw/GUY6gfz9CN1PW9bnkpjptZLZitJIHCLWV5S0yWo6ZXFPBK6jIkkDU4k8OCANHzJhSCoWqokKgLupClX3IpRgixikDgUYKJBJmMUTKoQq5RQpCVlISjISEIqZCSxBK2IBLEEiCM9VUPlRJSMvWrSEEq+oodZEWo8hlEYpbSFrFKjyoyhSxplUNeHMJBFxv9H+6daq0g4Pp/Xg0vnZsfkVcGsRInGbrV2xe5qP1FmWY9Hvgk5gLJps2UbY+D5tzb8XZDhDUKXUIPqZdOfR7H83al+HoowxfrRdJHaxzTRa9RutkJDDsltNgxNPPTNl8Zulh9q59Hri9X+x4XuxW+sgP6D7V/GaH8SxBOtJu8eUvS+11bm6Y/r4mXhaf3E/7v+dCOvomR5VExG1H6xszbvkdv5rw6Yejxet/P2f8AJS721uF6z930frf6lV3mmzKEgc5tSDnIzNF5yeM35MyVz+SEmRi+K+p73pfwr7k9ZxS+n8ssZLrFftoIRIQ2l6ofQ/5SRAjIcRfcy/SrAkNbquL8/wC2X7y9IBEIpsgAMWiYpS+U/d6Wbo+ZfSS1uqEm403rUyMC5Yy5JitDTetVtTgXoiTI4pQhpLDQYp0SUCmEalZhqMl8kVBjNQlJGLJymo6qFKSHmSSEIo8YpYc0yNQYEjFGyKEeSONQgKQkOQk/lX3SR1AsVRBJSQlekElCAQ1GqxTSElCCV3ICVJTLgRTkEgEphK1kBR0FCGdNakoS0F8ktVoKMgKBrIxjSU1SFRzVIVtO9nQCUI1B65DFhsuUj9zzbAz84vT4ftLHDriLo9ho/wCgu1gvWPT/AMaxXeIlbm6I/l66lXGnZJZf3emgKNxIZHGdQ7zEjxAJVi/3g+50YMVIYkyOCgppmIxgpREjxipZUJWsRjFeyomVSjFQAjGKLGC9kU1CBBzRooY4oyIUx6SCSSJJLSUOEZTQ8ylLkhISEoyTA5JOKZEoOG4yTg5pGKOOTogR+KPFLh5JiKYJIyggSAnF7BdqdsJxplGVIrKMV7KmVJYpiUKBKhV7KKHKLLvLJYoJUiASmWhkJksanbzoWjG2KDQXpAVzoN51CVO3nSqBWH7IP+iO1Ht0fxWPJSLoFoG3/S1+/U/iszITJs0e2P5eupUh13yfP00M9KmUYiWhlTt50KVO3nVejF7mFUMSZiJPxEylEbLlQLCsRIkRJiI2RsqKoNhTQX3STWVQkuEF16MFOUV6MUJAsVJRipIhYMiCTmiEQJKAgpIeZEkh5UJD/9k=" alt="Clareamento" class="service-image">
-                    <div class="service-content">
-                        <h3>Clareamento Dental</h3>
-                        <p>Dentes até 8 tons mais brancos com tecnologia a laser. Resultados visíveis em uma sessão.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <!-- Lentes: faceta na mão -->
-                    <img src="data:image/jpeg;base64,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" alt="Lentes de Contato" class="service-image">
-                    <div class="service-content">
-                        <h3>Lentes de Contato</h3>
-                        <p>Facetas ultrafinas para um sorriso perfeito. Transformação completa em poucas sessões.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <!-- Harmonização: procedimento estético facial -->
-                    <img src="data:image/jpeg;base64,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" alt="Harmonização" class="service-image">
-                    <div class="service-content">
-                        <h3>Harmonização Facial</h3>
-                        <p>Procedimentos estéticos para realçar sua beleza natural de forma segura e elegante.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <!-- Urgências: atendimento odontológico -->
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=400&fit=crop" alt="Urgências" class="service-image">
-                    <div class="service-content">
-                        <h3>Urgências 24h</h3>
-                        <p>Atendimento emergencial para dor de dente, traumas e problemas urgentes a qualquer hora.</p>
-                        <a href="#" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <img src="https://www.implart.com.br/wp-content/uploads/2019/02/clareamento_dental_a_laser_50kb.jpg" alt="Clareamento Premium">
+                <div class="service-content">
+                    <h3>Planejamento Digital</h3>
+                    <p>Tecnologia 3D para visualizar seu novo sorriso antes mesmo de iniciar o tratamento.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="about" id="sobre">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-images">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop" alt="Nossa Clínica" class="about-img-main">
-                    <img src="https://images.unsplash.com/photo-1588776813677-77aaf5595b83?w=400&h=400&fit=crop" alt="Atendimento" class="about-img-small">
-                </div>
-                <div class="about-content">
-                    <div class="section-tag"><i class="fas fa-info-circle"></i> Sobre Nós</div>
-                    <h2>Por que escolher a OdontoSorriso?</h2>
-                    <p>Somos uma clínica odontológica premium comprometida com a excelência. Nossa equipe é formada por profissionais especializados e apaixonados por transformar sorrisos.</p>
-                    <div class="features-grid">
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Equipamentos de última geração</span></div>
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Profissionais especializados</span></div>
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Ambiente acolhedor e moderno</span></div>
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Diversos convênios aceitos</span></div>
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Facilidade de pagamento</span></div>
-                        <div class="feature-item"><i class="fas fa-check"></i><span>Estacionamento gratuito</span></div>
-                    </div>
-                    <a href="#contato" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Agende sua Visita</a>
+    <section class="doctor" id="doctor">
+        <div class="doctor-image animate-on-scroll">
+            <img src="https://pixel-p1.s3.sa-east-1.amazonaws.com/doctor/avatar/8d441be0/8d441be0-b1ab-4de1-8152-2b7ee98b287e_medium_square.jpg" alt="Dra. Renata Almeida">
+            <div class="credentials">
+                <h4>Formação & Certificações</h4>
+                <ul>
+                    <li>• USP - Odontologia</li>
+                    <li>• NYU - Aesthetic Dentistry</li>
+                    <li>• Fellow AAED (USA)</li>
+                    <li>• Membro SBOE</li>
+                </ul>
+            </div>
+        </div>
+        <div class="doctor-content animate-on-scroll">
+            <span class="section-tag">O Especialista</span>
+            <h2>Onde arte e odontologia se <span>encontram</span></h2>
+            <p>Com mais de 15 anos dedicados exclusivamente à estética dental e formação internacional, minha missão é criar sorrisos que parecem naturais e transformam vidas.</p>
+            <p>Cada caso é único. Por isso, invisto tempo em entender não apenas o que você quer mudar, mas como quer se sentir ao sorrir.</p>
+            <p>CRO-SP 89765 | Especialista em Dentística e Prótese</p>
+            <div class="doctor-signature">Dra. Renata Almeida</div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="testimonial-content animate-on-scroll">
+            <p class="testimonial-quote">Fiz lentes de contato com a Dra. Renata e foi a melhor decisão que tomei. O processo foi incrível - vi meu novo sorriso antes mesmo de começar o tratamento. Hoje sorrio em todas as fotos!</p>
+            <div class="testimonial-author">
+                <img src="https://images.ctfassets.net/vh25xg5i1h5l/60QOQJ09qlXo6XJG5lywtp/dcb3439aee95004ab59ccd5e5ca33f79/photo-text-media-br-male-holding-aligners.jpg?w=200" alt="Patrícia Campos">
+                <div class="author-info">
+                    <div class="author-name">Patrícia Campos</div>
+                    <div class="author-case">Lentes de Contato - 18 elementos</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team -->
-    <section class="team" id="equipe">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag"><i class="fas fa-users"></i> Nossa Equipe</div>
-                <h2>Profissionais que cuidam de você</h2>
-                <p>Conheça os especialistas que vão transformar seu sorriso.</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop" alt="Dr. Carlos" class="team-photo">
-                    <h3>Dr. Carlos Silva</h3>
-                    <p class="role">Implantodontista</p>
-                    <p class="cro">CRO-SP 45678</p>
-                </div>
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=300&fit=crop" alt="Dra. Ana" class="team-photo">
-                    <h3>Dra. Ana Costa</h3>
-                    <p class="role">Ortodontista</p>
-                    <p class="cro">CRO-SP 56789</p>
-                </div>
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=300&fit=crop" alt="Dr. Pedro" class="team-photo">
-                    <h3>Dr. Pedro Santos</h3>
-                    <p class="role">Estética Dental</p>
-                    <p class="cro">CRO-SP 67890</p>
-                </div>
+    <section class="cta" id="contact">
+        <div class="animate-on-scroll">
+            <h2>Pronto para sua <em>transformação</em>?</h2>
+            <p>Agende uma avaliação e descubra como podemos criar o sorriso dos seus sonhos.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/5511999999999" class="btn-gold">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="tel:+5511999999999" class="btn-outline-light">Ligar Agora</a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials" id="depoimentos">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag"><i class="fas fa-quote-left"></i> Depoimentos</div>
-                <h2>O que nossos pacientes dizem</h2>
-                <p>A satisfação dos nossos pacientes é nossa maior conquista.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Maria" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Maria Silva</h4>
-                            <p>Paciente há 3 anos</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"Fiz meu implante aqui e foi a melhor decisão. Equipe super atenciosa e o resultado ficou natural demais!"</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="João" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>João Santos</h4>
-                            <p>Paciente há 5 anos</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"Tinha muito medo de dentista, mas aqui me senti acolhido desde a primeira consulta. Recomendo!"</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Ana" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Ana Oliveira</h4>
-                            <p>Paciente há 2 anos</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"O clareamento ficou incrível! Meus dentes nunca estiveram tão brancos. Ambiente super moderno."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-card">
-                <h2>Agende sua avaliação gratuita</h2>
-                <p>Primeira consulta sem compromisso. Venha transformar seu sorriso.</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/5511999999999" class="btn btn-white"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    <a href="tel:+551134567890" class="btn btn-outline-white"><i class="fas fa-phone"></i> Ligar Agora</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contato">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Entre em Contato</h3>
-                    <p>Estamos prontos para atender você.</p>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="contact-text">
-                            <h4>Endereço</h4>
-                            <p>Av. Paulista, 1234 - Sala 56<br>Bela Vista, São Paulo - SP</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="contact-text">
-                            <h4>Telefone</h4>
-                            <p>(11) 3456-7890</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-                        <div class="contact-text">
-                            <h4>WhatsApp</h4>
-                            <p>(11) 99999-9999</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
-                        <div class="contact-text">
-                            <h4>Horário</h4>
-                            <p>Seg a Sex: 8h às 20h<br>Sáb: 8h às 14h</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" action="https://formspree.io/f/SEU_FORM_ID" method="POST">
-                        <h3>Envie uma Mensagem</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input type="text" name="nome" placeholder="Seu nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Telefone</label>
-                                <input type="tel" name="telefone" placeholder="(11) 99999-9999" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input type="email" name="email" placeholder="seu@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Mensagem</label>
-                            <textarea name="mensagem" placeholder="Como podemos ajudar?"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map -->
-    <section class="map-section">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975654039826!2d-46.65342708502155!3d-23.563203284681764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0x63b0e04ecc76e5d9!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3><i class="fas fa-tooth"></i> OdontoSorriso</h3>
-                    <p>Transformando sorrisos e mudando vidas há mais de 15 anos em São Paulo.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#equipe">Equipe</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Tratamentos</h4>
-                    <ul>
-                        <li><a href="#">Implantes</a></li>
-                        <li><a href="#">Clareamento</a></li>
-                        <li><a href="#">Ortodontia</a></li>
-                        <li><a href="#">Lentes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Convênios</h4>
-                    <ul>
-                        <li><a href="#">Amil Dental</a></li>
-                        <li><a href="#">Bradesco</a></li>
-                        <li><a href="#">SulAmérica</a></li>
-                        <li><a href="#">OdontoPrev</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">Dra. Renata Almeida</a>
+                <p>Smile Design e Estética Dental de alto padrão. Transformando sorrisos e vidas há mais de 15 anos.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 OdontoSorriso. Todos os direitos reservados. | CRO-SP 12345</p>
+            <div class="footer-column">
+                <h4>Tratamentos</h4>
+                <ul>
+                    <li><a href="#">Lentes de Contato</a></li>
+                    <li><a href="#">Facetas</a></li>
+                    <li><a href="#">Clareamento</a></li>
+                    <li><a href="#">Reabilitação</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#cases">Transformações</a></li>
+                    <li><a href="#services">Tratamentos</a></li>
+                    <li><a href="#doctor">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Consultório</h4>
+                <ul>
+                    <li><a href="#">Av. Paulista, 1000</a></li>
+                    <li><a href="#">São Paulo - SP</a></li>
+                    <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Dra. Renata Almeida. CRO-SP 89765.</p>
+            <div class="social-links">
+                <a href="#">IG</a>
+                <a href="#">FB</a>
+                <a href="#">YT</a>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp -->
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
-        <span class="whatsapp-pulse"></span>
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1300);
-        });
-
-        // Navbar scroll
         window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
         });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
     </script>

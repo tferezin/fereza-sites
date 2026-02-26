@@ -2,52 +2,206 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Sites Profissionais para Clínicas de Saúde</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fereza AI - Sites Profissionais</title>
     <style>
-        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
-        h1 { color: #2c3e50; }
-        .nicho { margin: 30px 0; }
-        .nicho h2 { color: #3498db; }
-        a { display: inline-block; margin: 5px 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
-        a:hover { background: #2980b9; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #a0a0a0;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        .card h3 { margin-bottom: 8px; }
+        .card p { color: #888; font-size: 0.9rem; margin-bottom: 16px; }
+        .card a {
+            display: inline-block;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .card a:hover { opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .v1 { background: #2d3748; color: #a0aec0; }
+        .v2 { background: #234e52; color: #81e6d9; }
+        .v3 { background: #44337a; color: #b794f4; }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #666;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
-    <h1>🏥 Sites Profissionais para Clínicas</h1>
-    
-    <div class="nicho">
-        <h2>💆 Fisioterapia</h2>
-        <a href="fisioterapia-v1.html">Versão 1</a>
-        <a href="fisioterapia-v2.html">Versão 2</a>
-        <a href="fisioterapia-v3.html">Versão 3</a>
-    </div>
-    
-    <div class="nicho">
-        <h2>🦷 Odontologia</h2>
-        <a href="odonto-v1.html">Versão 1</a>
-        <a href="odonto-v2.html">Versão 2</a>
-        <a href="odonto-v3.html">Versão 3</a>
-    </div>
-    
-    <div class="nicho">
-        <h2>🥗 Nutrição</h2>
-        <a href="nutri-v1.html">Versão 1</a>
-        <a href="nutri-v2.html">Versão 2</a>
-        <a href="nutri-v3.html">Versão 3</a>
-    </div>
-    
-    <div class="nicho">
-        <h2>🧠 Psicologia</h2>
-        <a href="psico-v1.html">Versão 1</a>
-        <a href="psico-v2.html">Versão 2</a>
-        <a href="psico-v3.html">Versão 3</a>
-    </div>
-    
-    <div class="nicho">
-        <h2>🧴 Dermatologia</h2>
-        <a href="dermato-v1.html">Versão 1</a>
-        <a href="dermato-v2.html">Versão 2</a>
-        <a href="dermato-v3.html">Versão 3</a>
+    <div class="container">
+        <h1>🚀 Fereza AI Sites</h1>
+        <p class="subtitle">Templates profissionais para sua presença digital</p>
+
+        <div class="category">
+            <h2>🧠 Psicologia</h2>
+            <div class="templates">
+                <div class="card">
+                    <h3>Elegante <span class="badge v1">V1</span></h3>
+                    <p>Design clássico e sofisticado</p>
+                    <a href="psico-v1.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Natural <span class="badge v2">V2</span></h3>
+                    <p>Acolhedor e humanizado</p>
+                    <a href="psico-v2.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Tech <span class="badge v3">V3</span></h3>
+                    <p>Moderno e inovador</p>
+                    <a href="psico-v3.html">Ver Template →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>💪 Fisioterapia</h2>
+            <div class="templates">
+                <div class="card">
+                    <h3>Elegante <span class="badge v1">V1</span></h3>
+                    <p>Design clássico e sofisticado</p>
+                    <a href="fisioterapia-v1.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Natural <span class="badge v2">V2</span></h3>
+                    <p>Acolhedor e humanizado</p>
+                    <a href="fisioterapia-v2.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Tech <span class="badge v3">V3</span></h3>
+                    <p>Moderno e inovador</p>
+                    <a href="fisioterapia-v3.html">Ver Template →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>🦷 Odontologia</h2>
+            <div class="templates">
+                <div class="card">
+                    <h3>Elegante <span class="badge v1">V1</span></h3>
+                    <p>Design clássico e sofisticado</p>
+                    <a href="odonto-v1.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Natural <span class="badge v2">V2</span></h3>
+                    <p>Acolhedor e humanizado</p>
+                    <a href="odonto-v2.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Tech <span class="badge v3">V3</span></h3>
+                    <p>Moderno e inovador</p>
+                    <a href="odonto-v3.html">Ver Template →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>🥗 Nutrição</h2>
+            <div class="templates">
+                <div class="card">
+                    <h3>Elegante <span class="badge v1">V1</span></h3>
+                    <p>Design clássico e sofisticado</p>
+                    <a href="nutri-v1.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Natural <span class="badge v2">V2</span></h3>
+                    <p>Acolhedor e humanizado</p>
+                    <a href="nutri-v2.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Tech <span class="badge v3">V3</span></h3>
+                    <p>Moderno e inovador</p>
+                    <a href="nutri-v3.html">Ver Template →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>✨ Dermatologia</h2>
+            <div class="templates">
+                <div class="card">
+                    <h3>Elegante <span class="badge v1">V1</span></h3>
+                    <p>Design clássico e sofisticado</p>
+                    <a href="dermato-v1.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Natural <span class="badge v2">V2</span></h3>
+                    <p>Acolhedor e humanizado</p>
+                    <a href="dermato-v2.html">Ver Template →</a>
+                </div>
+                <div class="card">
+                    <h3>Tech <span class="badge v3">V3</span></h3>
+                    <p>Moderno e inovador</p>
+                    <a href="dermato-v3.html">Ver Template →</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Fereza AI Solutions • Todos os direitos reservados</p>
+        </footer>
     </div>
 </body>
 </html>

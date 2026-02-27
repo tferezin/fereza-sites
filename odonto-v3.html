@@ -580,135 +580,280 @@
             .footer-bottom { flex-direction: column; gap: 1rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
         }
-    
-/* ========== CURSOR CUSTOM ========== */
-.cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary, #7C3AED);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: all 0.15s ease;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+/* ===========================================
+   FIX MOBILE RESPONSIVO - TEMPLATES SAÚDE
+   Adicionar no final do CSS
+   =========================================== */
+
+/* Reset para evitar overflow horizontal */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.cursor.hover {
-    width: 50px;
-    height: 50px;
-    background: rgba(124, 58, 237, 0.2);
-    border-color: var(--secondary, #06B6D4);
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
-.cursor-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--primary, #7C3AED);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.05s ease;
-    transform: translate(-50%, -50%);
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
 }
 
-/* ========== MAGNETIC BUTTON ========== */
-.btn-magnetic {
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-}
-
-.btn-magnetic::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+/* Container padrão */
+.container, 
+section > div,
+.hero-content,
+.services-grid,
+.about-content,
+.team-grid,
+.contact-content {
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s ease;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.btn-magnetic:hover::before {
-    left: 100%;
-}
-
-.btn-magnetic:hover {
-    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.4);
-}
-
-/* ========== PARALLAX & ANIMATIONS ========== */
-@keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(3deg); }
-}
-
-@keyframes borderGlow {
-    0%, 100% { 
-        box-shadow: 0 0 20px rgba(124, 58, 237, 0.3),
-                    inset 0 0 20px rgba(124, 58, 237, 0.05);
+/* ========== TABLET (1024px) ========== */
+@media (max-width: 1024px) {
+    /* Hero */
+    .hero-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center;
     }
-    50% { 
-        box-shadow: 0 0 40px rgba(124, 58, 237, 0.5),
-                    inset 0 0 30px rgba(124, 58, 237, 0.1);
+    
+    .hero-image {
+        order: -1;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    /* Services Grid */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* About */
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    /* Team */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Contact */
+    .contact-content,
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Tech Features */
+    .tech-features {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Orbs decorativos - reduzir tamanho */
+    .orb, .orb-1, .orb-2, .orb-3 {
+        width: 300px !important;
+        height: 300px !important;
+        opacity: 0.5;
     }
 }
 
-.reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+/* ========== MOBILE (768px) ========== */
+@media (max-width: 768px) {
+    /* Typography */
+    h1, .hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2, section h2 {
+        font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+    }
+    
+    h3 {
+        font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+    }
+    
+    p, .hero p {
+        font-size: 1rem !important;
+    }
+    
+    /* Navigation */
+    nav, .nav-links {
+        display: none !important;
+    }
+    
+    .menu-toggle, .mobile-menu-btn {
+        display: flex !important;
+    }
+    
+    header {
+        padding: 1rem !important;
+    }
+    
+    /* Hero */
+    .hero {
+        min-height: auto !important;
+        padding: 6rem 1rem 3rem !important;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        text-align: center;
+    }
+    
+    .hero-stats {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .hero-buttons, .hero-cta {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .hero-buttons a, 
+    .hero-cta a,
+    .btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    /* Services Grid - 1 coluna no mobile */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .service-card {
+        padding: 1.5rem !important;
+    }
+    
+    /* About Section */
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    .about-image {
+        order: -1;
+        max-width: 100%;
+    }
+    
+    /* Team Grid */
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Contact */
+    .contact-content,
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    .contact-form {
+        padding: 1.5rem !important;
+    }
+    
+    /* Tech Features */
+    .tech-features {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Testimonials */
+    .testimonial-card {
+        padding: 1.5rem !important;
+    }
+    
+    /* Sections padding */
+    section {
+        padding: 3rem 1rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 2rem 1rem !important;
+    }
+    
+    .footer-content,
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center;
+    }
+    
+    /* Orbs - esconder ou minimizar no mobile */
+    .orb, .orb-1, .orb-2, .orb-3 {
+        width: 150px !important;
+        height: 150px !important;
+        opacity: 0.3;
+    }
+    
+    /* WhatsApp Button */
+    .whatsapp-float, .whatsapp-btn {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
 }
 
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* ========== MOBILE SMALL (480px) ========== */
+@media (max-width: 480px) {
+    h1, .hero h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    h2, section h2 {
+        font-size: 1.4rem !important;
+    }
+    
+    .hero {
+        padding: 5rem 0.75rem 2rem !important;
+    }
+    
+    section {
+        padding: 2rem 0.75rem !important;
+    }
+    
+    .service-card,
+    .team-card,
+    .testimonial-card {
+        padding: 1rem !important;
+    }
+    
+    /* Hide decorative elements */
+    .orb, .orb-1, .orb-2, .orb-3,
+    .decoration, .blur-circle {
+        display: none !important;
+    }
 }
 
-/* ========== ENHANCED HOVERS ========== */
-.hero-image-container:hover .hero-image,
-.hero img:hover {
-    transform: scale(1.05) rotate(2deg);
-    transition: transform 0.5s ease;
+/* ========== LANDSCAPE MOBILE ========== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto !important;
+        padding: 4rem 1rem 2rem !important;
+    }
 }
-
-.service-card {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.service-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(124,58,237,0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-radius: inherit;
-    pointer-events: none;
-}
-
-.service-card:hover::before {
-    opacity: 1;
-}
-
-</style>
+    </style>
 </head>
 <body>
     <header>
@@ -957,86 +1102,5 @@
             });
         });
     </script>
-
-<script>
-// ========== CURSOR CUSTOM ==========
-(function() {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor';
-    document.body.appendChild(cursor);
-    
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
-    
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
-    });
-    
-    function animateCursor() {
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-    
-    // Hover effect on interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .service-card, input, textarea');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-    
-    // Hide cursor on mobile
-    if ('ontouchstart' in window) {
-        cursor.style.display = 'none';
-        cursorDot.style.display = 'none';
-    }
-})();
-
-// ========== SCROLL REVEAL ==========
-(function() {
-    const reveals = document.querySelectorAll('.service-card, .about-feature, .process-step, section > .container > *');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal', 'visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    reveals.forEach(el => observer.observe(el));
-})();
-
-// ========== MAGNETIC BUTTONS ==========
-(function() {
-    const buttons = document.querySelectorAll('.btn-primary, .btn-hero, .cta-buttons .btn');
-    
-    buttons.forEach(btn => {
-        btn.classList.add('btn-magnetic');
-        
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-        });
-        
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-        });
-    });
-})();
-</script>
-
 </body>
 </html>
